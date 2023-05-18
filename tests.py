@@ -1,1 +1,0 @@
-print("flower".startswith("fl"))
