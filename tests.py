@@ -1,0 +1,1 @@
+print("flower".startswith("fl"))
