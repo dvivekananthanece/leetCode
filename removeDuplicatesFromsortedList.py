@@ -3,7 +3,9 @@ from typing import Optional
 
 
 class ListNode:
-    pass
+    def __init__(self, val=0, next=None):
+        self.next = next
+        self.val = val
 
 
 linkedList = ll.head()
@@ -20,55 +22,29 @@ Node4.next = Node6
 
 class Solution:
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        if head is None:
-            return head
-        firstHead = head.head
-        secondHead = head.head
-        currentHead = head.head
-
-        def remove(self, node):
-            prev_node = self.get_prev_node(node)
-            if prev_node is None:
-                self.head = self.head.next
+        list = []
+        result = newList = None
+        while head:
+            if head.data not in list:
+                list.append(head.data)
+            head = head.next
+        for i in list:
+            if result is None:
+                newList = result = ListNode(i)
             else:
-                prev_node.next = node.next
-
-        current1 = head.head
-        while current1:
-            data = current1.data
-            current2 = current1.next
-            while current2:
-                if current2.data == data:
-                    head.remove(current2)
-                current2 = current2.next
-            current1 = current1.next
-
-        firstHead = head.head
-        while firstHead is not None:
-            secondHead = firstHead.next
-            while secondHead is not None:
-                if firstHead.data == secondHead.data:
-                    secondHead.data = '_'
-                secondHead = secondHead.next
-            firstHead = firstHead.next
-        firstHead = head.head
-        while firstHead is not None:
-            if firstHead.next is not None:
-                if firstHead.next.data == '_' and firstHead.next.next is not None:
-                    firstHead.next = firstHead.next.next
-                elif firstHead.next.data == '_':
-                    firstHead.next = None
-            firstHead = firstHead.next
-        firstHead = head.head
-        while firstHead is not None:
-            if firstHead.next is not None:
-                if firstHead.next.data == '_' and firstHead.next.next is not None:
-                    firstHead.next = firstHead.next.next
-                elif firstHead.next.data == '_':
-                    firstHead.next = None
-            firstHead = firstHead.next
-        text = 'ytd'
-
+                result.next = ListNode(i)
+                result = result.next
+        return newList
 
 soln = Solution()
-soln.deleteDuplicates(linkedList)
+soln.deleteDuplicates(linkedList.head)
+
+# BEST SOLUTION
+# class Solution:
+#     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         node = head
+#         while(node):
+#             while node.next and node.val == node.next.val:
+#                 node.next = node.next.next
+#             node = node.next
+#         return head
