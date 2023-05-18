@@ -1,5 +1,5 @@
 class Solution:
-    def firstMissingPositive(self, nums: List[int]) -> int:
+    def firstMissingPositive(self, nums: list[int]) -> int:
         sortedArray = sorted(list(filter(lambda x: x > 0, [*set(nums)])))
         sortedArray.append(0)
         print(sortedArray)
